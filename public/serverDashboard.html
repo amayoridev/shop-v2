@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Server Stats Dashboard</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header>
+      <button id="nav-btn" class="nav-btn">☰</button>
+      <span
+        id="usernamePlaceholder"
+        style="position: absolute; top: 3vh; right: 10vw"
+      ></span>
+      <nav id="nav-menu" class="nav-menu">
+        <button id="close-btn" class="close-btn">&times;</button>
+        <ul>
+          <li><h1>Nexon Dashboard v1.1</h1></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="/client/stock">Manage stock</a></li>
+          <li><a href="/show-orders">Orders</a></li>
+          <li><a href="/admin/users">Users</a></li>
+          <li><a href="/">Menu</a></li>
+          <li id="logoutBtn"><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="dashboard">
+      <div class="block" id="cpu-usage">
+        <h2>CPU Usage</h2>
+        <div class="info-item">
+          <p id="cpu"></p>
+        </div>
+        <canvas id="cpuChart"></canvas>
+      </div>
+      <div class="block" id="ram-usage">
+        <h2>RAM Usage</h2>
+        <div class="info-item">
+          <p id="ram"></p>
+        </div>
+        <canvas id="ramChart"></canvas>
+      </div>
+      <div class="block" id="disk-usage">
+        <h2>Disk Usage</h2>
+        <div class="info-item">
+          <p id="disk"></p>
+        </div>
+        <canvas id="diskChart"></canvas>
+      </div>
+      <div class="block" id="bandwidth-usage">
+        <h2>Bandwidth</h2>
+        <div class="info-item">
+          <p id="bandwidth"></p>
+        </div>
+        <canvas id="bandwidthChart"></canvas>
+      </div>
+    </div>
+    <script src="./js/script.js"></script>
+  </body>
+</html>

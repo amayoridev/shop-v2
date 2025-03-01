@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Bill</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .bill-container {
+      background-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 25px;
+      max-width: 600px;
+      width: 100%;
+      position: relative;
+    }
+    .bill-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .bill-header h1 {
+      margin: 0;
+      font-size: 28px;
+      color: #333;
+    }
+    .bill-header p {
+      margin: 5px 0;
+      color: #555;
+    }
+    .bill-items {
+      margin-bottom: 25px;
+    }
+    .bill-items table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .bill-items th, .bill-items td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .bill-items th {
+      background-color: #f9f9f9;
+      color: #666;
+    }
+    .bill-items td {
+      color: #444;
+    }
+    .bill-total {
+      text-align: right;
+      font-size: 20px;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+    .bill-status-wrapper {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      left: 25px;
+      bottom: 25px;
+    }
+    .bill-status {
+      text-align: left;
+      font-size: 18px;
+      color: #444;
+      margin-bottom: 5px;
+    }
+    .bill-status.pending {
+      color: #e74c3c;
+    }
+    .bill-status.paid {
+      color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+  <div class="bill-container">
+    <div class="bill-header">
+      <h1>Order Bill</h1>
+      <p>Table: <%= order.table %></p>
+      <p>Date: <%= new Date(order.date).toLocaleDateString() %></p>
+    </div>
+    <div class="bill-items">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price (VND)</th>
+            <th>Total (VND)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% order.items.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.price.toLocaleString() %> VND</td>
+            <td><%= (item.price * item.quantity).toLocaleString() %> VND</td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <div class="bill-total">
+      Total: <%= order.items.reduce((total, item) => total + (item.price * item.quantity), 0).toLocaleString() %> VND
+    </div>
+    <div class="bill-status-wrapper">
+      <div class="bill-status <%= order.payment ? 'paid' : 'pending' %>">
+        Payment Status: <%= order.payment ? 'Paid' : 'Pending' %>
+      </div>
+      <div class="bill-status">
+        Status: <%= order.status %>
+      </div>
+      <div class="bill-status">
+        Note: <%= order.note %>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  function reload(){
+    location.reload();
+  }
+  setInterval(reload, 4000)
+</script>
+</html>

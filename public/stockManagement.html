@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Stock</title>
+    <link rel="stylesheet" href="../css/stock.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Manage Stock</h1>
+    </header>
+    <main>
+      <section class="stock-table-container">
+        <table id="stock-table">
+          <thead>
+            <tr>
+              <th>Product ID</th>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Stock data will be inserted here -->
+          </tbody>
+        </table>
+      </section>
+      <section class="add-stock">
+        <h2>Add New Stock</h2>
+        <form id="stock-form" method="post" action="/api/addMenu">
+          <label for="product-id">Product ID:</label>
+          <input type="text" id="product-id" name="id" required />
+          <label for="product-name">Product Name:</label>
+          <input type="text" id="product-name" name="stockname" required />
+          <label for="type">Type:</label>
+          <select id="type" name="type" required>
+            <option value="">Select type</option>
+            <option value="drinks">Drinks</option>
+            <option value="food">Food</option>
+            <option value="dessert">Desserts</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="price">Price:</label>
+          <input
+            type="number"
+            id="product-price"
+            name="price"
+            step="0.01"
+            required
+          />
+          <label for="img">Placeholder IMG:</label>
+          <input
+            type="text"
+            id="img"
+            name="img"
+            placeholder="IMG Placeholder link"
+          />
+          <button type="submit">Add Stock</button>
+        </form>
+        <br></br>
+        <button style="text-align: center;" onclick="location.href = '/dashboard'">Back to Dashboard</button>
+      </section>
+    </main>
+    <script src="../js/stock.js"></script>
+  </body>
+</html>

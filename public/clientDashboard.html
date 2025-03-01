@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link type="text/css" rel="stylesheet" href="./css/clientDashboard.css" />
+    <link rel="icon" href="./img/a.jpg" type="image" />
+  </head>
+  <body>
+    <div class="navbar-container">
+      <button class="nav-toggle" id="navToggle">☰</button>
+      <nav class="navbar" id="navbar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div class="nav-title">Nexon Client Dashboard v1.1</div>
+        <ul class="nav-links">
+          <li><a href="/show-orders">Orders</a></li>
+          <li><a href="./client/stock">Current stock</a></li>
+          <li><a href="./">Menu</a></li>
+          <li><a href="./client/stock">Add stock</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="main-content">
+      <div class="welcome-container">
+        <h1>Welcome, <span id="username"></span></h1>
+        <p>Your roles: <span id="roles"></span></p>
+        <a href="/logout" class="logout-button">Logout</a>
+      </div>
+    </div>
+
+    <script>
+      const navToggle = document.getElementById("navToggle");
+      const navbar = document.getElementById("navbar");
+      const closeBtn = document.getElementById("closeBtn");
+
+      navToggle.addEventListener("click", function () {
+        navbar.classList.add("show");
+      });
+
+      closeBtn.addEventListener("click", function () {
+        navbar.classList.remove("show");
+      });
+
+      // Close menu if user clicks outside
+      window.addEventListener("click", function (event) {
+        if (
+          navbar.classList.contains("show") &&
+          event.target !== navToggle &&
+          !navbar.contains(event.target)
+        ) {
+          navbar.classList.remove("show");
+        }
+      });
+
+      async function getUserData() {
+        const response = await fetch("/api/userAPI");
+        const data = await response.json();
+        document.getElementById("username").innerText = `${data.username}`;
+        document.getElementById("roles").innerText = `${data.role}`;
+      }
+      getUserData();
+    </script>
+  </body>
+</html>

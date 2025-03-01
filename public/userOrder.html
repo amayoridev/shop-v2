@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Order Your Favorites</title>
+    <link rel="stylesheet" href="../css/userOrder.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Order Your Favorites</h1>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#cart" id="cart-link">Cart (<span id="cart-count">0</span>)</a>
+        <a href="/login">Login</a>
+        <a href="/logout">Logout</a>
+      </nav>
+    </header>
+
+    <div id="popup-modal" class="hidden">
+      <div class="popup-content">
+        <span id="close-popup">&times;</span>
+        <div id="popup-body">
+          <!-- Content for the popup will go here -->
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <!-- Cart Popup -->
+      <section id="cart-container" class="hidden">
+        <h2>Your Cart</h2>
+        <ul id="cart-items">
+          <!-- Cart items will be dynamically added -->
+        </ul>
+        <p>Total Price: VND<span id="total-price">0.00</span></p>
+        <button id="checkout-button">Checkout</button>
+      </section>
+
+      <!-- Menu -->
+      <section id="drinks-section">
+        <h2>Drinks</h2>
+        <div id="drinks-container">
+          <!-- Drink items will be inserted here -->
+        </div>
+      </section>
+      
+      <section id="food-section">
+        <h2>Food</h2>
+        <div id="food-container">
+          <!-- Food items will be inserted here -->
+        </div>
+      </section>
+      
+      <section id="dessert-section">
+        <h2>Dessert</h2>
+        <div id="dessert-container">
+          <!-- Dessert items will be inserted here -->
+        </div>
+      </section>
+      
+      <section id="other-section">
+        <h2>Other</h2>
+        <div id="other-container">
+          <!-- Other items will be inserted here -->
+        </div>
+      </section>
+      
+    </main>
+
+    <script src="../js/userOrder.js"></script>
+  </body>
+</html>
